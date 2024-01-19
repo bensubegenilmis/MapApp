@@ -21,39 +21,42 @@ export default function App() {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location.coords);
     })();
+
+
+    setTimeout(() => {
+      setLocation({
+        latitude: 39.9032599,
+        longitude: 32.5979626,
+  
+      });
+  
+    }, 5000);
   }, []);
 
 
-  setTimeout(() => {
-    setLocation({
-      latitude: 39.9032599,
-      longitude: 32.5979626,
-
-    });
-  }, 2000);
 
 
-  if (errorMsg) {
-    return <Text>{errorMsg}</Text>
-  }
+if (errorMsg) {
+  return <Text>{errorMsg}</Text>
+}
 
 
-  return (
-    <View style={styles.container}>
-      {location && (
-        <MapView
-          style={styles.map}
-          region={{
-            latitude: location?.latitude,
-            longitude: location?.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        />
+return (
+  <View style={styles.container}>
+    {location && (
+      <MapView
+        style={styles.map}
+        region={{
+          latitude: location?.latitude,
+          longitude: location?.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
 
-      )}
-    </View>
-  );
+    )}
+  </View>
+);
 }
 
 const styles = StyleSheet.create({
